@@ -5,7 +5,7 @@ import { ShoppingCart, Bitcoin, CreditCard, Banknote } from "lucide-react";
 
 const CerebralStorefront = () => {
   const products = [
-    { id: 1, name: "Automotive Window Tinting Course", description: "Learn the art of professional window tinting.", price: "$99", file: "/downloads/window-tinting-course.pdf" },
+    { id: 1, name: "Automotive Window Tinting Course", description: "Learn the art of professional window tinting.", price: "$99", file: "/downloads/window-tinting-course.pdf " },
     { id: 2, name: "Advanced Tinting Techniques", description: "Take your tinting skills to the next level.", price: "$149", file: "/downloads/advanced-tinting.pdf" },
     { id: 3, name: "Business Starter Kit", description: "Everything you need to launch your tinting business.", price: "$199", file: "/downloads/business-starter-kit.pdf" }
   ];
