@@ -1,0 +1,115 @@
+# Thisimport React from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { ShoppingCart, Bitcoin, CreditCard, Banknote } from "lucide-react";
+
+const CerebralStorefront = () => {
+  const products = [
+    { id: 1, name: "Automotive Window Tinting Course", description: "Learn the art of professional window tinting.", price: "$99", file: "/downloads/window-tinting-course.pdf" },
+    { id: 2, name: "Advanced Tinting Techniques", description: "Take your tinting skills to the next level.", price: "$149", file: "/downloads/advanced-tinting.pdf" },
+    { id: 3, name: "Business Starter Kit", description: "Everything you need to launch your tinting business.", price: "$199", file: "/downloads/business-starter-kit.pdf" }
+  ];
+  
+  const handlePurchase = (file) => {
+    // Simulate purchase process then trigger download
+    setTimeout(() => {
+      const link = document.createElement('a');
+      link.href = file;
+      link.download = file.split('/').pop();
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }, 1000); // Simulate processing delay
+  };
+  
+  return (
+    <div className="bg-gray-900 text-white min-h-screen p-6">
+      {/* Header with Logo */}
+      <header className="flex justify-between items-center p-4 border-b border-gray-700">
+        <div className="flex items-center gap-4">
+          <img src="/path-to-logo.png" alt="Cerebral Logo" className="h-12" />
+          <div>
+            <h1 className="text-2xl font-bold">Cerebral</h1>
+            <p className="text-sm text-gray-400">Digital Designs, Web Development, E-Courses, and E-Books</p>
+          </div>
+        </div>
+        <Button variant="outline" className="border-gray-500">Sign In</Button>
+      </header>
+      
+      {/* Hero Section */}
+      <section className="text-center py-12">
+        <h2 className="text-4xl font-semibold">The Minds Behind Digital Designs</h2>
+        <p className="text-gray-400 mt-2">Premium digital assets for creative professionals.</p>
+        <Button className="mt-4 bg-blue-600 hover:bg-blue-500">Explore Products</Button>
+      </section>
+      
+      {/* Featured Products */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-8">
+        {products.map((product) => (
+          <Card key={product.id} className="bg-gray-800 p-4">
+            <CardContent>
+              <div className="h-40 bg-gray-700 rounded mb-4"></div>
+              <h3 className="text-lg font-semibold">{product.name}</h3>
+              <p className="text-gray-400 text-sm">{product.description}</p>
+              <p className="text-gray-300 font-bold mt-2">{product.price}</p>
+              <Button 
+                className="mt-3 w-full flex items-center justify-center gap-2" 
+                onClick={() => handlePurchase(product.file)}
+              >
+                <ShoppingCart size={16} /> Buy & Download
+              </Button>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      
+      {/* Payment Methods */}
+      <section className="mt-12 text-center">
+        <h3 className="text-xl font-semibold">Secure Payment Options</h3>
+        <div className="flex justify-center gap-4 mt-4">
+          <Banknote size={32} />
+          <Bitcoin size={32} />
+          <CreditCard size={32} />
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default CerebralStorefront;
+ is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
